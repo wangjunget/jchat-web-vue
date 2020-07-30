@@ -9,7 +9,11 @@ module.exports = {
     '@vue/typescript/recommended'
   ],
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020
+  },
+  globals: {
+    JMessage: true
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
