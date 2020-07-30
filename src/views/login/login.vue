@@ -77,7 +77,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import { StorageService, SessionService, global } from '@/services/common'
+import { StorageService, SessionService } from '@/utils/storage.service'
+import { global } from '@/utils/global'
 import md5 from 'js-md5'
 
 export default {
