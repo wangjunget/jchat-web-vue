@@ -1,5 +1,9 @@
 import Vue, { VNode } from 'vue'
 
+interface JMessageOptions {
+  debug: boolean;
+}
+
 declare global {
   namespace JSX {
     // tslint:disable no-empty-interface
@@ -9,5 +13,11 @@ declare global {
     interface IntrinsicElements {
       [elem: string]: any;
     }
+  }
+
+  class JMessage {
+    constructor (options?: {
+      debug: boolean
+    });
   }
 }

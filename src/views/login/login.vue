@@ -75,13 +75,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mapState } from 'vuex'
 import { StorageService, SessionService } from '@/utils/storage.service'
 import { global } from '@/utils/global'
 import md5 from 'js-md5'
 
-export default {
+export default Vue.extend({
+  name: 'Login',
   data () {
     return {
       loginForm: {
@@ -161,7 +163,7 @@ export default {
         })
     },
     // 登录成功
-    loginSuccess (loginState) {
+    loginSuccess (loginState: any) {
       const md5Username = md5('jchat-remember-username')
       const md5Password = md5('jchat-remember-password')
       StorageService.set(md5Username, loginState.userInfo.username, true)
@@ -190,7 +192,7 @@ export default {
     }
 
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

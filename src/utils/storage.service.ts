@@ -1,10 +1,6 @@
 // 登录信息长期记录
 export class StorageService {
-  // constructor () {
-  //   // pass
-  // }
-
-  static set (key, data, useCookie, time, path) {
+  static set (key: string, data: any, useCookie: boolean, time?: number, path?: string) {
     if (localStorage && !useCookie) {
       try {
         localStorage.setItem(key, data)
@@ -26,7 +22,7 @@ export class StorageService {
     document.cookie = key + '=' + data + ';expires=' + exp.toUTCString()
   }
 
-  static get (key, useCookie) {
+  static get (key: string, useCookie?: boolean) {
     if (localStorage && !useCookie) {
       const value = localStorage.getTime(key)
       if (value) {
@@ -42,7 +38,7 @@ export class StorageService {
     return null
   }
 
-  static remove (key, useCookie, path) {
+  static remove (key: string, useCookie: boolean, path: string) {
     if (localStorage && !useCookie) {
       const value = localStorage.getItem(key)
       if (value) {
@@ -64,15 +60,15 @@ export class StorageService {
 
 // 记录会话登录信息
 export class SessionService {
-  static set (key, data) {
+  static set (key: string, data: any) {
     sessionStorage.setItem(key, data)
   }
 
-  static get (key) {
+  static get (key: string) {
     return sessionStorage.getItem(key)
   }
 
-  static remove (key) {
+  static remove (key: string) {
     sessionStorage.removeItem(key)
   }
 }
