@@ -131,7 +131,7 @@ export default Vue.extend({
   },
   methods: {
     // 切换到登录界面
-    changeToSignIn () {
+    changeToSignIn (): void {
       const loginContainer = document.getElementById('login-container')
       loginContainer.classList.remove('right-panel-active')
     },

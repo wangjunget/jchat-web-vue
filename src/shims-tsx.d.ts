@@ -18,6 +18,6 @@ declare global {
   class JMessage {
     constructor (options?: {
       debug: boolean
-    });
+    })
   }
 }
