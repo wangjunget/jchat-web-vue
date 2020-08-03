@@ -21,7 +21,7 @@ const store = new Vuex.Store({
       setItem: (key, value) => window.sessionStorage.setItem(key, value),
       removeItem: (key) => window.sessionStorage.removeItem(key)
     },
-    paths: ['login']
+    paths: []
   })]
 })
 

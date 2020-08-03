@@ -26,9 +26,10 @@ const router = new VueRouter({
 const whiteList = ['/login']
 
 router.beforeEach((to, from, next) => {
-  if (whiteList.indexOf(to.path) >= 0) {
-    return next()
+  if (whiteList.indexOf(to.path) < 0 && !store.getters.isLogin) {
+    return next('/login')
   }
+  return next()
 })
 
 export default router

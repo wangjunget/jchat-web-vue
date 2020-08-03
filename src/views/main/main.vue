@@ -10,11 +10,41 @@
 <script>
 import MainMenu from './components/mainMenu'
 import MainRight from './components/mainRight'
+import { Loading } from 'element-ui'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     MainMenu,
     MainRight
+  },
+  created () {
+    if (!this.isLoginSuccess) {
+      this.loginUser()
+    }
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.login.userInfo,
+      isLoginSuccess: state => state.main.isLoginSuccess
+    })
+  },
+  methods: {
+    loginUser () {
+      const loading = Loading.service({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: '#ffffff'
+      })
+      this.$store.dispatch('main/jimInit')
+        .then(() => {
+          return this.$store.dispatch('login/login', this.userInfo)
+        })
+        .then(() => {
+          loading.close()
+        })
+    }
   }
 }
 </script>

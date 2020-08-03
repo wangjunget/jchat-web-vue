@@ -79,7 +79,6 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { StorageService, SessionService } from '@/utils/storage.service'
-import { global } from '@/utils/global'
 import md5 from 'js-md5'
 
 export default Vue.extend({
@@ -142,7 +141,6 @@ export default Vue.extend({
     },
     // 登录
     handleLogin () {
-      global.JIM = new JMessage({ debug: true }) // 登录重新实例化
       const password = this.rememberPassword ? this.rememberPassword : md5(this.loginForm.password)
       const loginObj = {
         username: this.loginForm.username.trim(),

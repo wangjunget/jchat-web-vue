@@ -3,6 +3,8 @@ export interface States {
 
 }
 
-const state: States = {}
+const state: States = {
+
+}
 
 export default state
