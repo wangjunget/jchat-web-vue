@@ -23,9 +23,9 @@ const actions: ActionTree<States, any> = {
     const data = await ApiService.init(initObj)
     if (data.code) {
       dispatch('apiErrorHandler', data)
-    } else {
-      return Promise.resolve()
+      return Promise.reject(data)
     }
+    return Promise.resolve(data)
   }
 
 }

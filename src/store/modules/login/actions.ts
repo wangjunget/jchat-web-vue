@@ -19,10 +19,9 @@ const actions: ActionTree<States, any> = {
     if (data.code) {
       commit('loginFailed', data)
       return Promise.reject(data)
-    } else {
-      commit('loginSuccess', payload)
-      return Promise.resolve(state)
     }
+    commit('loginSuccess', payload)
+    return Promise.resolve(state)
   }
 }
 
