@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Login from '@/views/login/login.vue'
 import Main from '@/views/main/main.vue'
-import store from '@/store'
+import { sessionKeys } from '@/utils/config'
+import { SessionService } from '@/utils/storage.service'
 
 Vue.use(VueRouter)
 
@@ -25,8 +26,12 @@ const router = new VueRouter({
 
 const whiteList = ['/login']
 
+function isInSession () {
+  return SessionService.get(sessionKeys.username) && SessionService.get(sessionKeys.password)
+}
+
 router.beforeEach((to, from, next) => {
-  if (whiteList.indexOf(to.path) < 0 && !store.getters.isLogin) {
+  if (whiteList.indexOf(to.path) < 0 && !isInSession()) {
     return next('/login')
   }
   return next()

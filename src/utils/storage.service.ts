@@ -24,7 +24,7 @@ export class StorageService {
 
   static get (key: string, useCookie?: boolean) {
     if (localStorage && !useCookie) {
-      const value = localStorage.getTime(key)
+      const value = localStorage.getItem(key)
       if (value) {
         return value
       }

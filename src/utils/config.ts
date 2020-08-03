@@ -28,6 +28,8 @@
  * 建议在生产环境中使用服务端生成签名，否则masterSecret有暴露的风险
  */
 
+import md5 from 'js-md5'
+
 // randomStr : 随机字符串, 作为签名加 salt 使用
 const randomStr = '022cd9fd995849b58b3ef0e943421ed9'
 
@@ -76,4 +78,9 @@ const timestamp = 1507882399401
 export const demoInitConfig = {
   signature,
   timestamp
+}
+
+export const sessionKeys = {
+  username: md5('jchat-remember-username'),
+  password: md5('jchat-remember-password')
 }
