@@ -10,46 +10,11 @@
 <script>
 import MainMenu from './components/mainMenu'
 import MainRight from './components/mainRight'
-import { Loading } from 'element-ui'
-import { mapState } from 'vuex'
 
 export default {
   components: {
     MainMenu,
     MainRight
-  },
-  created () {
-    if (this.isInSession && !this.isLoginSuccess) { // TODO 优化登录状态
-      this.loginUser()
-    }
-  },
-  computed: {
-    ...mapState({
-      userInfo: state => state.login.userInfo,
-      isInSession: state => state.login.isInSession,
-      isLoginSuccess: state => state.login.isLoginSuccess
-    })
-  },
-  methods: {
-    loginUser () {
-      const loading = Loading.service({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: '#ffffff'
-      })
-      this.$store.dispatch('login/jimInit')
-        .then(() => {
-          return this.$store.dispatch('login/login', this.userInfo)
-        })
-        .then(() => {
-          loading.close()
-        })
-        .catch(() => {
-          loading.close()
-          this.$router.push('/login')
-        })
-    }
   }
 }
 </script>
