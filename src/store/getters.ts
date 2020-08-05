@@ -1,9 +1,7 @@
-import state from './modules/app/state'
-
 const getters = {
-  isLogin: state => {
-    return !!state.login.userInfo.username && !!state.login.userInfo.password
-  }
+  isInSession: state => state.login.isInSession,
+  isLoginSuccess: state => state.login.isLoginSuccess
+
 }
 
 export default getters

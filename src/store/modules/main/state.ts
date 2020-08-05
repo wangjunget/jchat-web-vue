@@ -1,10 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface States {
-
+  isInSession: boolean;
 }
 
 const state: States = {
-
+  isInSession: false
 }
 
 export default state

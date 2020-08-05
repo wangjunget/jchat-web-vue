@@ -4,6 +4,7 @@ export interface States {
     password: string;
   };
   loginTip: string;
+  isInSession: boolean;
   isLoginSuccess: boolean;
 }
 
@@ -13,6 +14,7 @@ const state: States = {
     password: ''
   },
   loginTip: '',
+  isInSession: false,
   isLoginSuccess: false
 }
 

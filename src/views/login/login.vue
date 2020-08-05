@@ -147,17 +147,16 @@ export default Vue.extend({
         password
       }
       this.isLoginLoading = true
-      this.$store.dispatch('main/jimInit')
+      this.$store.dispatch('login/jimInit')
         .then(() => {
           return this.$store.dispatch('login/login', loginObj)
         })
         .then((loginState) => {
           this.loginSuccess(loginState)
-          this.$router.push('/')
+          this.$router.replace('/')
         })
-        .catch((errorMsg) => {
+        .catch(() => {
           this.isLoginLoading = false
-          this.$store.dispatch('app/errorApiTip', errorMsg)
         })
     },
     // 登录成功

@@ -2,6 +2,15 @@ import { MutationTree } from 'vuex'
 import { States } from './state'
 
 const mutatios: MutationTree<States> = {
+  setUserInfo (state, payload) {
+    state.userInfo = payload
+  },
+  setSessionStatus (state, payload) {
+    state.isInSession = payload
+  },
+  setLoginStatus (state, payload) {
+    state.isLoginSuccess = payload
+  },
   loginSuccess (state, payload) {
     state.isLoginSuccess = true
     state.loginTip = ''

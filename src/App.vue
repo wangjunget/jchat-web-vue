@@ -10,7 +10,8 @@ import { global } from '@/utils/global'
 
 export default Vue.extend({
   created () {
-    global.JIM = new JMessage({ debug: true }) // 登录重新实例化
+    global.JIM = new JMessage({ debug: true })
+    this.$store.dispatch('login/initUserInfo')
   }
 })
 </script>

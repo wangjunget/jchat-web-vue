@@ -12,12 +12,6 @@ import MainMenu from './components/mainMenu'
 import MainRight from './components/mainRight'
 import { Loading } from 'element-ui'
 import { mapState } from 'vuex'
-import { SessionService } from '@/utils/storage.service'
-import { sessionKeys } from '@/utils/config'
-
-function isInSession () {
-  return SessionService.get(sessionKeys.username) && SessionService.get(sessionKeys.password)
-}
 
 export default {
   components: {
@@ -25,13 +19,14 @@ export default {
     MainRight
   },
   created () {
-    if (isInSession()) { // TODO 优化登录状态
+    if (this.isInSession && !this.isLoginSuccess) { // TODO 优化登录状态
       this.loginUser()
     }
   },
   computed: {
     ...mapState({
       userInfo: state => state.login.userInfo,
+      isInSession: state => state.login.isInSession,
       isLoginSuccess: state => state.login.isLoginSuccess
     })
   },
@@ -43,18 +38,15 @@ export default {
         spinner: 'el-icon-loading',
         background: '#ffffff'
       })
-      const loginObj = {
-        username: SessionService.get(sessionKeys.username),
-        password: SessionService.get(sessionKeys.password)
-      }
-      this.$store.dispatch('main/jimInit')
+      this.$store.dispatch('login/jimInit')
         .then(() => {
-          return this.$store.dispatch('login/login', loginObj)
+          return this.$store.dispatch('login/login', this.userInfo)
         })
         .then(() => {
           loading.close()
         })
         .catch(() => {
+          loading.close()
           this.$router.push('/login')
         })
     }
