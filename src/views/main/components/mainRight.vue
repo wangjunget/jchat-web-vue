@@ -11,9 +11,9 @@
 
 <script>
 import SearchUser from './searchUser'
-import MainCenterChat from './mainCenterChat'
-import MainCenterContact from './mainCenterContact'
-import MainCenterRoom from './mainCenterRoom'
+import MainCenterChat from '@/views/chat/chat'
+import MainCenterContact from '@/views/contact/contact'
+import MainCenterRoom from '@/views/room/room'
 
 export default {
   components: {

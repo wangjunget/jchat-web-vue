@@ -1,15 +1,15 @@
 <template>
-  <div class="main-center-contact">
+   <div class="main-center-contact">
     3
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'contact'
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
 </style>

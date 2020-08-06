@@ -1,15 +1,15 @@
 <template>
-  <div class="main-center-room">
+   <div class="main-center-room">
     1
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'room'
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
 </style>

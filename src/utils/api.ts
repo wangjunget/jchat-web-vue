@@ -3,14 +3,19 @@ import { global } from './global'
 const timeoutData = { code: -2 }
 
 class ApiService {
-  // global.JIM 初始化
-  static init (initObj, success, error, timeout) {
-    return this.callback(global.JIM.init(initObj, success, error, timeout))
+  // JIM初始化
+  static init (initObj: object, success?: Function, error?: Function, timeout?: Function) {
+    return this.callback(global.JIM.init(initObj), success, error, timeout)
   }
 
   // 登录
-  static login (loginObj, success, error, timeout) {
-    return this.callback(global.JIM.login(loginObj, success, error, timeout))
+  static login (loginObj: object, success?: Function, error?: Function, timeout?: Function) {
+    return this.callback(global.JIM.login(loginObj), success, error, timeout)
+  }
+
+  // 注册
+  static register (registerObj: object, success?: Function, error?: Function, timeout?: Function) {
+    return this.callback(global.JIM.register(registerObj), success, error, timeout)
   }
 
   // 回调函数

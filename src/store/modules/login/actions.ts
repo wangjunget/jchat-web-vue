@@ -67,6 +67,25 @@ const actions: ActionTree<States, any> = {
     }
     commit('loginSuccess', payload)
     return Promise.resolve(state)
+  },
+  /** 注册 */
+  async signUp ({ dispatch }, payload) {
+    const signUpObj = {
+      username: payload.username,
+      password: payload.password,
+      is_md5: true
+    }
+    const data = await ApiService.register(signUpObj)
+    if (data.code) {
+      dispatch('apiErrorHandler', data)
+      return Promise.reject(data)
+    }
+    const tipMessage = {
+      message: '注册成功',
+      type: 'success'
+    }
+    dispatch('app/showTipMessage', tipMessage, { root: true })
+    return Promise.resolve(data)
   }
 }
 

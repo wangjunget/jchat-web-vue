@@ -43,7 +43,8 @@ export default Vue.extend({
           }
           loading.close()
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           loading.close()
           this.$router.push('/login')
         })

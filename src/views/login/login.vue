@@ -40,6 +40,7 @@
           <el-button
             :loading="isSignUpLoading"
             :disabled="isSignUpButtonDisabled"
+            @click="handleSignup"
           >
             注册
           </el-button>
@@ -157,6 +158,25 @@ export default Vue.extend({
         })
         .catch(() => {
           this.isLoginLoading = false
+        })
+    },
+    /** 注册 */
+    handleSignup () {
+      const signupObj = {
+        username: this.signUpForm.username.trim(),
+        password: md5(this.signUpForm.password)
+      }
+      this.isSignUpLoading = true
+      this.$store.dispatch('login/jimInit')
+        .then(() => {
+          return this.$store.dispatch('login/signUp', signupObj)
+        })
+        .then(() => {
+          this.isSignUpLoading = false
+          this.changeToSignIn()
+        })
+        .catch(() => {
+          this.isSignUpLoading = false
         })
     },
     // 登录成功
