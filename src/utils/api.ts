@@ -18,6 +18,11 @@ class ApiService {
     return this.callback(global.JIM.register(registerObj), success, error, timeout)
   }
 
+  // 获取用户资料
+  static getUserInfo (userObj: object, success?: Function, error?: Function, timeout?: Function) {
+    return this.callback(global.JIM.getUserInfo(userObj), success, error, timeout)
+  }
+
   // 回调函数
   static callback (obj, ...args) {
     return new Promise(resolve => {

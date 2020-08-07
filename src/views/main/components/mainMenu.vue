@@ -1,6 +1,6 @@
 <template>
   <div class="main-menu">
-    <div class="main-self-avatar">
+    <div class="main-self-avatar" @click="isShowUserInfo = true">
       <img src="@/assets/images/single-avatar.svg" alt="" />
     </div>
     <div class="main-tab">
@@ -22,14 +22,22 @@
         <div class="main-setting-icon" />
       </div>
     </div>
+    <user-info :is-show-user-info.sync="isShowUserInfo"></user-info>
   </div>
 </template>
 
 <script>
+import UserInfo from './userInfo'
+
 export default {
   name: 'MainMenu',
+  components: {
+    UserInfo
+  },
   data () {
-    return {}
+    return {
+      isShowUserInfo: false
+    }
   },
   methods: {
 
