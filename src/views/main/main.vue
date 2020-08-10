@@ -10,7 +10,6 @@
 <script>
 import MainMenu from './components/mainMenu'
 import MainRight from './components/mainRight'
-import { global } from '@/utils/global'
 import { Loading } from 'element-ui'
 import { mapState } from 'vuex'
 
@@ -22,13 +21,23 @@ export default {
   data () {
     return {}
   },
-  async created () {
-    global.JIM = new JMessage({ debug: true })
-    this.$store.dispatch('login/initUserInfo')
-    if (this.isInSession && !this.isLoginSuccess) {
-      await this.loginUser()
-    }
-    this.$store.dispatch('main/getSelfInfo')
+  created () {
+    const loading = Loading.service({
+      lock: true,
+      text: 'Loading',
+      spinner: 'el-icon-loading',
+      background: '#ffffff'
+    })
+    this.$store.dispatch('main/init')
+      .then(() => {
+        this.$store.dispatch('main/getSelfInfo')
+      })
+      .catch(() => {
+        this.$router.push('/login')
+      })
+      .finally(() => {
+        loading.close()
+      })
   },
   computed: {
     ...mapState({
@@ -37,31 +46,7 @@ export default {
       isLoginSuccess: state => state.login.isLoginSuccess
     })
   },
-  methods: {
-    loginUser () {
-      const loading = Loading.service({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: '#ffffff'
-      })
-      return this.$store.dispatch('login/jimInit')
-        .then(() => {
-          return this.$store.dispatch('login/login', this.userInfo)
-        })
-        .then(() => {
-          if (this.$route.path !== '/') {
-            this.$router.push('/')
-          }
-          loading.close()
-        })
-        .catch((err) => {
-          console.log(err)
-          loading.close()
-          this.$router.push('/login')
-        })
-    }
-  }
+  methods: {}
 }
 </script>
 

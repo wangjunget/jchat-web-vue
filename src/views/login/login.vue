@@ -80,6 +80,7 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { StorageService, SessionService } from '@/utils/storage.service'
+import { global } from '@/utils/global'
 import md5 from 'js-md5'
 
 export default Vue.extend({
@@ -127,6 +128,7 @@ export default Vue.extend({
     }
   },
   created () {
+    global.JIM = new JMessage({ debug: true })
     this.getRememberUsernamePassword()
   },
   methods: {
@@ -148,7 +150,7 @@ export default Vue.extend({
         password
       }
       this.isLoginLoading = true
-      this.$store.dispatch('login/jimInit')
+      this.$store.dispatch('main/jimInit')
         .then(() => {
           return this.$store.dispatch('login/login', loginObj)
         })
@@ -156,7 +158,8 @@ export default Vue.extend({
           this.loginSuccess(loginState)
           this.$router.replace('/')
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           this.isLoginLoading = false
         })
     },
