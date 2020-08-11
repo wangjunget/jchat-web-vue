@@ -18,6 +18,11 @@ class ApiService {
     return this.callback(global.JIM.register(registerObj), success, error, timeout)
   }
 
+  // 获取静态资源路径
+  static getResource (urlObj: object, success?: Function, error?: Function, timeout?: Function) {
+    return this.callback(global.JIM.getResource(urlObj), success, error, timeout)
+  }
+
   // 获取用户资料
   static getUserInfo (userObj: object, success?: Function, error?: Function, timeout?: Function) {
     return this.callback(global.JIM.getUserInfo(userObj), success, error, timeout)

@@ -1,8 +1,7 @@
 <template>
-  <el-dialog :visible.sync="_isShowUserInfo" width="320px" class="self-info">
+  <el-dialog :visible.sync="_isShowUserInfo" width="320px" top="30vh" :close-on-click-modal="false" class="self-info">
+    <div slot="title">jchat</div>
     <div class="self-info-container modal-content clearfix">
-      <span class="modal-close"></span>
-      <span class="self-info-more"></span>
       <!-- <info-menu-component [hidden]="!infoMenu.show" [menu]="infoMenu" (selectMenuItem)="selectMenuItemEmit($event)"></info-menu-component> -->
       <div class="self-info-avatar">
         <div class="self-info-show-avatar">
@@ -27,25 +26,25 @@
       </div>
       <p class="self-info-p display-flex">
         <span class="self-info-fixed-width">用户名：</span>
-        <!-- <span class="flex-1" [ngClass]="{'gray': isEdit}">{{selfInfo.username}}</span> -->
+        <span class="flex-1">{{selfInfo.username}}</span>
       </p>
       <p class="self-info-p display-flex">
         <span class="self-info-fixed-width">昵&ensp;&ensp;称：</span>
-        <span hidden="isEdit" class="flex-1">{{
+        <span class="flex-1">{{
           selfInfo.nickname ? selfInfo.nickname : "无"
         }}</span>
         <!-- <input spellcheck="false" class="self-info-input input-focus" (change)="nicknameChange($event)" [hidden]="!isEdit" type="text" spellcheck="false" [ngModel]="selfInfo.info.nickname"> -->
       </p>
       <p class="self-info-p display-flex">
         <span class="self-info-fixed-width">性&ensp;&ensp;别：</span>
-        <span hidden="isEdit" class="flex-1">{{
+        <span class="flex-1">{{
           selfInfo.gender === 0 ? "保密" : selfInfo.gender === 1 ? "男" : "女"
         }}</span>
         <!-- <select-component *ngIf="isEdit" [selectList]="sexList"></select-component> -->
       </p>
       <p class="self-info-p display-flex">
         <span class="self-info-fixed-width">地&ensp;&ensp;区：</span>
-        <span hidden="isEdit" class="flex-1">{{
+        <span class="flex-1">{{
           selfInfo.region ? selfInfo.region : "无"
         }}</span>
         <!-- <input spellcheck="false" class="self-info-input input-focus" (change)="regionChange($event)" [hidden]="!isEdit" type="text" spellcheck="false" [ngModel]="selfInfo.info.region"> -->
@@ -91,8 +90,6 @@ export default {
 .self-info-container {
   width: 320px;
   overflow: hidden;
-  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
   border-radius: 0;
   padding: 0 30px;
   color: #808080;
@@ -253,9 +250,6 @@ export default {
   .el-dialog {
     .el-dialog__body {
       padding: 0;
-    }
-    .el-dialog__header {
-      display: none;
     }
   }
 }

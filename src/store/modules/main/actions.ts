@@ -42,7 +42,7 @@ const actions: ActionTree<States, any> = {
       signature,
       timestamp
     }
-    const data = await ApiService.init(initObj)
+    const data: any = await ApiService.init(initObj)
     if (data.code) {
       dispatch('apiErrorHandler', data)
       return Promise.reject(data)
@@ -54,10 +54,22 @@ const actions: ActionTree<States, any> = {
     const userInfoObj = {
       username: rootGetters.userInfo.username
     }
-    const data = await ApiService.getUserInfo(userInfoObj)
+    const data: any = await ApiService.getUserInfo(userInfoObj)
     if (data.code) {
       dispatch('apiErrorHandler', data)
       return Promise.reject(data)
+    } else if (!data.user_info.avatar || data.user_info.avatar === '') {
+      data.user_info.avatarUrl = ''
+    } else {
+      const urlObj = {
+        media_id: data.user_info.avatar
+      }
+      const urlInfo: any = await ApiService.getResource(urlObj)
+      if (urlInfo.code) {
+        data.user_info.avatarUrl = ''
+      } else {
+        data.user_info.avatarUrl = urlInfo.url
+      }
     }
     commit('setSelfInfo', data.user_info)
     return Promise.resolve(data)
